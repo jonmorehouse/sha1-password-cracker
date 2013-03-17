@@ -1,6 +1,6 @@
 // include all project libraries	
 #include "modules/input.hpp"
-#include "modules/controller.hpp"
+#include "classes/controller.hpp"
 
 // include project dependencies
 #include <iostream>

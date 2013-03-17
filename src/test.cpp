@@ -58,6 +58,16 @@ void testHash() {
 
 }
 
+void testController() {
+
+	application::Controller controller;//
+
+
+	// works verified online
+	controller.simpleHashing();//run the simple hash test
+
+}
+
 
 int main() {
 
@@ -65,7 +75,9 @@ int main() {
 
 	// testFiles();//test the file input module
 
-	testHash();
+	// testInput();//test the input module
+
+	testController();
 
 
 }
