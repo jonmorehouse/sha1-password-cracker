@@ -1,5 +1,6 @@
 // include project libraries that are needed for testing
 #include "modules/input.hpp"
+#include "modules/files.hpp"
 #include "classes/controller.hpp"
 
 // include c++ libraries that are not included previously
@@ -16,9 +17,34 @@ void testInput() {
 
 };
 
+void test(int i) {
+
+
+	std::cout << i << std::endl;
+
+}
+
+void testFiles() {
+
+	auto callback = [] () {
+
+		std::cout << "HELLO WORLD" << std::endl;
+
+	};
+
+	files::loadFile("data/test.txt", test);
+	// files::loadFile("data/test.txt", callback);
+
+
+
+}
+
+
 int main() {
 
-	testInput();//test the input module
+	// testInput();//test the input module
+
+	testFiles();//test the file input module
 
 
 }
