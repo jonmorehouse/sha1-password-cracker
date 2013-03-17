@@ -5,7 +5,7 @@
 // include project dependencies
 #include <iostream>
 
-// 
+// initialize the menu options 
 void menuOptions() {
 
 	// print out all valid menu options as given in the assignment syllabus
@@ -13,7 +13,6 @@ void menuOptions() {
 	std::cout << "2.) -- Load Dictionary.\n"; //hash all of the words in the dictionary file
 	std::cout << "3.) -- Decrypt.\n";//
 	std::cout << "4.) -- Exit.\n";
-
 }
 
 void menuController() {
