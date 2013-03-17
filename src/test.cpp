@@ -5,6 +5,7 @@
 
 // include c++ libraries that are not included previously
 #include <iostream>
+#include <string>
 
 // test input module for various user input elements
 void testInput() {
@@ -17,24 +18,22 @@ void testInput() {
 
 };
 
-void test(int i) {
 
-
-
-}
-
+// test the files module
 void testFiles() {
 
 	int testInt = 0;
 
+	// basic small callback for the element
 	auto callback = [&testInt] (std::string line) {
 
 		testInt++;
 	};
 
-	files::loadFile("data/test.txt", callback);
-	
+	// run the laod file module
+	files::loadFile("./data/test.txt", callback);
 
+	std::cout << "Lines: " << testInt << std::endl;
 }
 
 
