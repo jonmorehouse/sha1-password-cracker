@@ -2,12 +2,9 @@
 
 namespace files {
 
-	void loadFile(const char * filename, std::function<void(int i)> callback) {
+	void loadFile(const char * filename, std::function<void(std::string input)> callback) {
 
-
-		callback(0);
-
-
+		
 	}
 
 

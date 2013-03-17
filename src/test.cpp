@@ -20,22 +20,20 @@ void testInput() {
 void test(int i) {
 
 
-	std::cout << i << std::endl;
 
 }
 
 void testFiles() {
 
-	auto callback = [] () {
+	int testInt = 0;
 
-		std::cout << "HELLO WORLD" << std::endl;
+	auto callback = [&testInt] (std::string line) {
 
+		testInt++;
 	};
 
-	files::loadFile("data/test.txt", test);
-	// files::loadFile("data/test.txt", callback);
-
-
+	files::loadFile("data/test.txt", callback);
+	
 
 }
 
