@@ -4,8 +4,8 @@ namespace application {
 
 	Controller::Controller() {
 
-
-
+		// initialize our dictionary
+		this->dictionary = new std::unordered_map<std::string, std::string>();
 
 	};
 
@@ -17,23 +17,15 @@ namespace application {
 
 	};
 
-	// 
+	// simply hashes a single value
 	void Controller::simpleHashing() {
 
-		std::cout << "Please input a string to hash.";
+		std::cout << "Please input a string to hash: ";
 		std::string input = input::getString();	
 
-
-		// allocate the correct amount of memory 
-		char * output = new char[41]();
-
 		// grab the hash from out local function
-		this->getHexHash(input, output);
+		std::cout << this->getHexHash(input) << std::endl;
 
-		std::cout << output << std::endl;
-
-		// delete the current hash
-		delete output;
 	}
 
 	// 
@@ -42,25 +34,48 @@ namespace application {
 		// first open the file
 		// second create callback to pass for each element
 		// each string should be a hash etc
+		auto helper = [this] (std::string input) {
 
+			// hash the element
+			std::string hash = this->getHexHash(input);
 
+			// now insert a pair into the dictionary store!
+			this->dictionary->insert(std::pair<std::string, std::string>(hash, input));
+		};
 
+		// initialize the filename
+		std::string filename = "data/dictionary.txt";
+
+		// load the file and for each line, have the helper function append to the list
+		files::loadFile(filename.c_str(), helper);
 	}
 
-	// 
+	// decrypt a single value as given 
 	void Controller::decrypt() {
 
-		// for each of the hashed passwords
-		// try to look up in the unordered map
-		// if you can't find it then bruteforce
-		// keep a stack of unmatched passwords
-		// when we match them -- append to the dictionary list!
-			
+		// decrypt a single word
+
+
+
+
 	}
+
+	void Controller::decryptFile() {
+
+		// decrypt a file of elements
+
+
+	}	
 	
 
 	/************** PRIVATE FUNCTIONS **************/
-	void Controller::getHexHash(std::string input, char * hexHash) {
+	std::string Controller::getHexHash(std::string input) {
+
+		//initialize a hexHash string holder
+		char temp[41];
+
+		// initialize string
+		std::string hexHash;
 
 		// generate a char to store the initial hash for our element
 		unsigned char hash[20];
@@ -69,8 +84,21 @@ namespace application {
 		sha1::calc(input.c_str(), input.length(), hash);
 
 		// actually grab the hexHash now
-		sha1::toHexString(hash, hexHash);
+		sha1::toHexString(hash, temp);
+
+		// copy the temp value over to the string
+		hexHash = temp;//copy the temp over to the string
+
+		// return the std::string 
+		return hexHash;
 	}
 
+	void Controller::bruteForce() {
+
+		// responsible for brute forcing all of the passwords and appending them to a list etc
+		// have a lambda to pass the element to our dictionary
+
+
+	}
 
 };

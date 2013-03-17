@@ -64,7 +64,9 @@ void testController() {
 
 
 	// works verified online
-	controller.simpleHashing();//run the simple hash test
+	// controller.simpleHashing();//run the simple hash test
+
+	controller.loadDictionary();
 
 }
 

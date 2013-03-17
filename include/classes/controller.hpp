@@ -25,15 +25,18 @@ namespace application {
 
 			void simpleHashing();//run the simple hashing functionality!
 			void loadDictionary();//load the dictionary element
+
+			// decryption helpers
 			void decrypt();//decrypt a single element -- will append to the dictionary
-			void decryptAll();//decrypt the dictionary from hashes	
+			void decryptFile();//decrypt the dictionary from hashes	
+			// print helpers
 			void print();//print a single password and hash
 			void printAll();//prints all password hashes and values
 
-
 		private://
 
-			void getHexHash(std::string, char * hexHash);//get the hash for a string
+			std::string getHexHash(std::string input);//get the hash for a string
+			void bruteForce();//will brute force all of the undefined hashes etc
 
 		private://unfound elements 
 
