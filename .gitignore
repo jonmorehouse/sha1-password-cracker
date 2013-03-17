@@ -1,0 +1,4 @@
+*.dSYM/
+current
+test.txt
+build/
