@@ -5,6 +5,13 @@
 #include "modules/files.hpp"
 #include "modules/sha1.hpp"
 
+// include some c++ standard libraries
+#include <unordered_map>
+#include <queue>
+#include <string>
+
+
+// application 
 namespace application {
 
 	class Controller {
@@ -18,11 +25,22 @@ namespace application {
 
 			void simpleHashing();//run the simple hashing functionality!
 			void loadDictionary();//load the dictionary element
-			void decrypt();//decrypt the dictionary from hashes	
+			void decrypt();//decrypt a single element -- will append to the dictionary
+			void decryptAll();//decrypt the dictionary from hashes	
+			void print();//print a single password and hash
+			void printAll();//prints all password hashes and values
 
 
-		private:
+		private://
 
 			void getHexHash(std::string, char * hexHash);//get the hash for a string
+
+		private://unfound elements 
+
+			std::unordered_map<std::string, std::string> * dictionary;//use the standard string to help with the automated hashing function etc ...
+
+			// each of the undefinedHashes will 
+			std::queue<std::string> * undefinedHashes;//this is the container that will hold all of our undefined hashes for this class
+
 	};
 };
