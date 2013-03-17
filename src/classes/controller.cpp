@@ -20,22 +20,28 @@ namespace application {
 	// 
 	void Controller::simpleHashing() {
 
-		// std::cout << "Please input a string to hash.";
-		// std::string input = input::getString();	
+		std::cout << "Please input a string to hash.";
+		std::string input = input::getString();	
 
-			
+
 		// allocate the correct amount of memory 
-		char * output = (char *)malloc(41 * sizeof(char));
+		char * output = new char[41]();
 
+		// grab the hash from out local function
 		this->getHexHash(input, output);
 
 		std::cout << output << std::endl;
 
-		free output;
+		// delete the current hash
+		delete output;
 	}
 
 	// 
 	void Controller::loadDictionary() {
+
+		// first open the file
+		// second create callback to pass for each element
+		// each string should be a hash etc
 
 
 
@@ -44,9 +50,12 @@ namespace application {
 	// 
 	void Controller::decrypt() {
 
-
-
-
+		// for each of the hashed passwords
+		// try to look up in the unordered map
+		// if you can't find it then bruteforce
+		// keep a stack of unmatched passwords
+		// when we match them -- append to the dictionary list!
+			
 	}
 	
 
