@@ -1,7 +1,8 @@
 #pragma once
 
+// load the modules file
+#include "modules/input.hpp"
 #include "modules/files.hpp"
-
 
 namespace application {
 
@@ -12,8 +13,10 @@ namespace application {
 			Controller();
 			~Controller();
 
+		public://public controller functions
 
-
+			void simpleHashing();//run the simple hashing functionality!
+			void loadDictionary();//load the dictionary element
+			void decrypt();//decrypt the dictionary from hashes	
 	};
-
 };

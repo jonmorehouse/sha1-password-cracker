@@ -4,7 +4,7 @@ namespace input {
 
 	int getInteger() {
 
-
+		
 
 		return 0;
 	}

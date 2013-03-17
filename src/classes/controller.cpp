@@ -16,6 +16,29 @@ namespace application {
 
 	};
 
+	// 
+	void Controller::simpleHashing() {
+
+
+
+
+	}
+
+	// 
+	void Controller::loadDictionary() {
+
+
+
+	}
+
+	// 
+	void Controller::decrypt() {
+
+
+
+
+	}
+	
 
 
 
