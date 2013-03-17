@@ -21,8 +21,15 @@ namespace input {
 	std::string getString() {
 
 
-		
+		// grab the string data from the user
+		std::string data;
 
+		// grab the line data
+		getline(std::cin, data);
+		
+				
+		//return our line data -- can put in some error testing later
+		return data;
 	}
 
 
