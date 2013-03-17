@@ -31,7 +31,7 @@ void RLE<T>::compress(const T* input, const int size) {
 
 	// put our advanced logic here to check the negative
 	// want to pull things in by reference so we can get the real-time variable values. Otherwise they are just cached once!
-	auto checkNegativeRun = [data, &outputIndex, &inputIndex, input] () {
+	auto checkNegativeRun = [data, &outputIndex, &inputIndex, input] () -> bool {
 
 		Element<T> current = data[outputIndex];//cache the current element
 		T last = current.data[0];
