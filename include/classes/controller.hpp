@@ -29,9 +29,6 @@ namespace application {
 			// decryption helpers
 			void decrypt();//decrypt a single element -- will append to the dictionary
 			void decryptFile();//decrypt the dictionary from hashes	
-			// print helpers
-			void print();//print a single password and hash
-			void printAll();//prints all password hashes and values
 
 		private://
 

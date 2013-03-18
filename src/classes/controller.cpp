@@ -7,6 +7,8 @@ namespace application {
 		// initialize our dictionary
 		this->dictionary = new std::unordered_map<std::string, std::string>();
 
+		// initialize the dictionary
+		this->undefinedHashes = new std::queue<std::string>();//create a new queue to handle all of the hashes not currently found in our element!
 	};
 
 
@@ -53,20 +55,77 @@ namespace application {
 	// decrypt a single value as given 
 	void Controller::decrypt() {
 
+		std::string hash,//hash that the user inputs
+			value;//result
+
+		// initialize the find element for this decryption
+		std::unordered_map<std::string, std::string>::const_iterator result;
+
 		// decrypt a single word
+		// ask user to put in a hash!
+		std::cout << "Please input an sha1 hex hash: ";
+		// hash from user 
+		hash = input::getString();//get the string with our modul 
 
+		// actually find the hash in the dictionary
+		result = this->dictionary->find(hash);
 
+		// check and find the results
+		if (result == this->dictionary->end())
+			value = "NOT FOUND";
 
+		else value = result->second;//save the value of the second piece of the pair
 
 	}
 
+	// decrypt all of the values of given file
 	void Controller::decryptFile() {
 
-		// decrypt a file of elements
+		// grab the filename from our pieces
+		std::string filename;
+		// create a find element
+		std::unordered_map<std::string, std::string>::const_iterator result;//result of the find piece
 
+		// create a queue
+		std::vector<std::string> hashes;//these are all of the hashes we are currently working with
+		// put each queue in the password list
+		// if its not found in the hash, then we need to bruteforce!
+		// once we have brute-forced, print them all out! 
+		// decrypt a file of elements
+		auto helper = [this, &result, &hashes] (std::string hash) {
+
+			// now check if the element is not found etc
+			result = this->dictionary->find(hash);
+
+			// now if not found need to queue it up to be brute-forced
+			if (result == this->dictionary->end())
+				this->undefinedHashes->push(hash);
+
+			// now push the hash back into the vector of hashes for this current file
+			hashes.push_back(hash);
+		};
+
+		// start functionality here
+		// std::cout << "Please input the name of your hash file: ";
+		// filename = input::getString();//grab the string filename
+
+		filename = "data/hashes.txt";//cache the hashes element
+
+		// now load the file and call our helper function each time to save the elements
+		files::loadFile(filename.c_str(), helper);
+
+		// now bruteforce any elements that need to be brute-forced
+		this->bruteForce();
+
+		// loop through all of the hashes and print them out -- everything should be solved -- if it was unable to be brute forced then it will be printed out poorly
+		for_each(hashes.begin(), hashes.end(), [] (std::string input) {
+
+			std::cout << input << std::endl;
+		});
+
+		// end of function ... 
 
 	}	
-	
 
 	/************** PRIVATE FUNCTIONS **************/
 	std::string Controller::getHexHash(std::string input) {
@@ -97,8 +156,18 @@ namespace application {
 
 		// responsible for brute forcing all of the passwords and appending them to a list etc
 		// have a lambda to pass the element to our dictionary
+		// responsible for calling the brute forcing the proper modules
 
+		// will be responsible for handling the hash etc
+		auto helper = [this] (std::string hash, std::string value) {
 
+			// push into the dictionary the new pair!
+			this->dictionary->push(std::pair<std::string, std::string>(hash, value));
+
+		};			
+
+		// now we just want to loop through each of the members 
+		
 	}
 
 };
