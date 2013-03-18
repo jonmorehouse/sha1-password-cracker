@@ -65,9 +65,10 @@ void testController() {
 
 	// works verified online
 	// controller.simpleHashing();//run the simple hash test
+	controller.loadDictionary(); // test the basic dictionary functionality
+	controller.loadFile();//load the file 
 
-	controller.loadDictionary();
-
+	
 }
 
 

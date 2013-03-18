@@ -14,7 +14,8 @@ namespace application {
 
 	Controller::~Controller() {
 
-
+		delete this->dictionary;
+		delete this->undefinedHashes;
 
 
 	};
@@ -162,7 +163,7 @@ namespace application {
 		auto helper = [this] (std::string hash, std::string value) {
 
 			// push into the dictionary the new pair!
-			this->dictionary->push(std::pair<std::string, std::string>(hash, value));
+			this->dictionary->insert(std::pair<std::string, std::string>(hash, value));
 
 		};			
 
