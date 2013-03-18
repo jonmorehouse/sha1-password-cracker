@@ -30,6 +30,9 @@ namespace application {
 			void decrypt();//decrypt a single element -- will append to the dictionary
 			void decryptFile();//decrypt the dictionary from hashes	
 
+			// print helpers
+			const void printDictionary();
+
 		private://
 
 			std::string getHexHash(std::string input);//get the hash for a string

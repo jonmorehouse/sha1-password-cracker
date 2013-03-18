@@ -60,15 +60,16 @@ void testHash() {
 
 void testController() {
 
+	// 
 	application::Controller controller;//
-
 
 	// works verified online
 	// controller.simpleHashing();//run the simple hash test
 	controller.loadDictionary(); // test the basic dictionary functionality
-	controller.loadFile();//load the file 
+	// controller.decryptFile();//load the file 
+	// controller.decrypt();
+	// controller.printDictionary();
 
-	
 }
 
 
