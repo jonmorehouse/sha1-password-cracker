@@ -79,8 +79,9 @@ namespace application {
 		
 		else value = result->second;//save the value of the second piece of the pair
 
-		std::cout << value << std::endl;			
-
+		// print out the hash element
+		std::cout << "Hash: " << hash << std::endl;
+		std::cout << "Value: " << value << std::endl;
 	}
 
 	// decrypt all of the values of given file
