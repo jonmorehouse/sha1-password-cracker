@@ -10,22 +10,25 @@ namespace password {
 
 		// std::string guess(this->size, (*this->validCharacters)[0]);//this is the current guess
 		std::string guess;
+
+		// resize the string 
+		guess.resize(this->size);
 		
-		auto check = [] () {
+		// check the current guess and respond accordingly
+		auto check = [&guess] () {
 
 			// check the guess element here!
-
-		};		
+			// std::cout << guess << std::endl;
+		};	
 
 		// loop through all indexes of the value
 		for (int i = 0; i < this->size; i++) {
 
 			// loop through all of the characters 
-			for_each(this->validCharacters->begin(), this->validCharacters->end(), [&guess, i] (char character) {
+			for_each(this->validCharacters->begin(), this->validCharacters->end(), [&guess, i, check] (char character) {
 
-				std::cout << character << std::endl;
-
-				// guess[i] = character;
+				guess[i] = character;
+				std::cout << guess << std::endl;
 				// check();//check the value -- if it is true it will kill the entire function!
 			});
 		}//end of for loop
