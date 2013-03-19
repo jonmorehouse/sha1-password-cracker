@@ -74,9 +74,19 @@ void testController() {
 
 void testPassword() {
 
-	password::Password password;//password element
-	
+	// get the valid characters etc
+	std::vector<char> validCharacters;
 
+	// load file for valid characters
+	files::loadFile("data/valid_characters.txt", [&validCharacters] (std::string character) {
+
+		validCharacters.push_back(character[0]);	
+	});
+
+	// 
+	password::Password password(&validCharacters, "asdf");//password element
+
+	password.crack();
 }
 
 

@@ -13,10 +13,8 @@ namespace password {
 
 	struct Password {
 
-		// 
-		Password();
-		// password over-loaded constructor
-		Password(std::vector<char> * validCharacters, std::string hash, int size);
+		//pass in valid chars and a hash!	
+		Password(std::vector<char> * validCharacters, std::string hash);
 
 		// functions for the element
 		void crack();//
@@ -26,7 +24,8 @@ namespace password {
 		std::string hash;//hash length
 		std::string value;//current hash
 
-		int size;//length of the character
+		int size;//length of the password
+		int minSize;//minimum length of password
 		bool status;//status of the element
 
 	};	
