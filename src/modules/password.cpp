@@ -10,16 +10,31 @@ namespace password {
 
 		// std::string guess(this->size, (*this->validCharacters)[0]);//this is the current guess
 		std::string guess;
+		// no vector element will be greater than the length of the element
+		std::vector<int> characterIndex;//index for the current guess / position
+
 
 		// resize the string 
 		guess.resize(this->size);
-		
+
+
 		// check the current guess and respond accordingly
 		auto check = [&guess] () {
 
+			std::cout << guess << std::endl;
 			// check the guess element here!
 			// std::cout << guess << std::endl;
 		};	
+
+		// assume that the brute force is maxed out when the last guess integer is equal to the last valid character etc ...
+		while (guess[this->size - 1] != validCharacters->back()) {
+
+			// want to iterate through each of the elements
+				
+
+
+
+		}
 
 		// loop through all indexes of the value
 		for (int i = 0; i < this->size; i++) {
@@ -31,6 +46,8 @@ namespace password {
 				std::cout << guess << std::endl;
 				// check();//check the value -- if it is true it will kill the entire function!
 			});
+
+			
 		}//end of for loop
 		
 
