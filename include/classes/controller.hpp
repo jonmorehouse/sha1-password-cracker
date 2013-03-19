@@ -36,14 +36,27 @@ namespace application {
 		private://
 
 			std::string getHexHash(std::string input);//get the hash for a string
+			// brute force and load into the dictionary
 			void bruteForce();//will brute force all of the undefined hashes etc
 
 		private://unfound elements 
 
+			// unordered map to store all dictionary elements
 			std::unordered_map<std::string, std::string> * dictionary;//use the standard string to help with the automated hashing function etc ...
 
 			// each of the undefinedHashes will 
 			std::queue<std::string> * undefinedHashes;//this is the container that will hold all of our undefined hashes for this class
+
+			// store all valid characters for the brute-forcing!
+			std::vector<char> * validCharacters;//
+
+			struct {
+
+				std::string hashesFile;
+				std::string dictionaryFile;
+				std::string validCharactersFile;
+
+			} data;
 
 	};
 };

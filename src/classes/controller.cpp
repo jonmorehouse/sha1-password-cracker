@@ -11,6 +11,30 @@ namespace application {
 
 		// initialize the dictionary
 		this->undefinedHashes = new std::queue<std::string>();//create a new queue to handle all of the hashes not currently found in our element!
+
+		// initialize characters elements	
+		this->validCharacters = new std::vector<char>();
+
+		// initialize data
+		this->data.hashesFile = "data/hashes.txt";
+		this->data.dictionaryFile = "data/dictionary.txt";
+		this->data.validCharactersFile = "data/valid_characters.txt";
+
+		// helper to push characters into the validCharacters vector
+		auto helper = [this] (std::string input) {
+
+			// push the character to the back of the element
+			this->validCharacters->push_back(input[0]);
+		};
+
+		// load in the files
+		files::loadFile(this->data.validCharactersFile.c_str(), helper);
+
+		// loop through the vector and print each element 
+		for_each(this->validCharacters->begin(), this->validCharacters->end(), [] (char character) {
+
+			std::cout << character << std::endl; 
+		});
 	};
 
 
@@ -41,18 +65,12 @@ namespace application {
 			// hash the element
 			std::string hash = this->getHexHash(input);
 
-			if (input == "jon")
-				std::cout << hash << std::endl;
-
 			// now insert a pair into the dictionary store!
 			this->dictionary->insert(std::pair<std::string, std::string>(hash, input));
 		};
 
-		// initialize the filename
-		std::string filename = "data/dictionary.txt";
-
 		// load the file and for each line, have the helper function append to the list
-		files::loadFile(filename.c_str(), helper);
+		files::loadFile(this->data.dictionaryFile.c_str(), helper);
 	}
 
 	// decrypt a single value as given 
@@ -108,29 +126,16 @@ namespace application {
 			if (result == this->dictionary->end())
 				this->undefinedHashes->push(hash);
 
-			else
-				std::cout << "FOUND" << std::endl;
-
 			// now push the hash back into the vector of hashes for this current file
 			hashes.push_back(hash);
 		};
 
-		// start functionality here
-		// std::cout << "Please input the name of your hash file: ";
-		// filename = input::getString();//grab the string filename
-		filename = "data/hash.txt";//cache the hashes element
-
 		// now load the file and call our helper function each time to save the elements
-		files::loadFile(filename.c_str(), helper);
+		files::loadFile(this->data.hashesFile.c_str(), helper);
 
 		// now bruteforce any elements that need to be brute-forced
 		this->bruteForce();
 
-		// loop through all of the hashes and print them out -- everything should be solved -- if it was unable to be brute forced then it will be printed out poorly
-		for_each(hashes.begin(), hashes.end(), [] (std::string input) {
-
-			// std::cout << input << std::endl;
-		});
 
 		// end of function ... 
 	}	
@@ -141,10 +146,7 @@ namespace application {
 
 			std::cout << current.first << " " << current.second << std::endl;	
 
-
 		});		
-
-
 	}
 
 	/************** PRIVATE FUNCTIONS **************/
