@@ -9,7 +9,7 @@
 #include <vector>
 
 //  
-namespace application {
+namespace password {
 
 	struct Password {
 
@@ -23,6 +23,9 @@ namespace application {
 		// functions for the element
 		void crack();//
 	};	
+		
+	// grab the password hash!
+	std::string getHexHash(std::string input);//get the hash for a string
 	
 };
 

@@ -3,7 +3,7 @@
 // load the modules file
 #include "modules/input.hpp"
 #include "modules/files.hpp"
-#include "modules/sha1.hpp"
+#include "modules/password.hpp"
 
 // include some c++ standard libraries
 #include <unordered_map>
@@ -35,7 +35,6 @@ namespace application {
 
 		private://
 
-			std::string getHexHash(std::string input);//get the hash for a string
 			// brute force and load into the dictionary
 			void bruteForce();//will brute force all of the undefined hashes etc
 

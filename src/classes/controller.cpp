@@ -45,7 +45,7 @@ namespace application {
 		std::string input = input::getString();	
 
 		// grab the hash from out local function
-		std::cout << this->getHexHash(input) << std::endl;
+		std::cout << password::getHexHash(input) << std::endl;
 	}
 
 	// 
@@ -57,7 +57,7 @@ namespace application {
 		auto helper = [this] (std::string input) {
 
 			// hash the element
-			std::string hash = this->getHexHash(input);
+			std::string hash = password::getHexHash(input);
 
 			// now insert a pair into the dictionary store!
 			this->dictionary->insert(std::pair<std::string, std::string>(hash, input));
@@ -143,29 +143,6 @@ namespace application {
 	}
 
 	/************** PRIVATE FUNCTIONS **************/
-	std::string Controller::getHexHash(std::string input) {
-
-		//initialize a hexHash string holder
-		char temp[41];
-
-		// initialize string
-		std::string hexHash;
-
-		// generate a char to store the initial hash for our element
-		unsigned char hash[20];
-
-		// calculate the hash for the string input
-		sha1::calc(input.c_str(), input.length(), hash);
-
-		// actually grab the hexHash now
-		sha1::toHexString(hash, temp);
-
-		// copy the temp value over to the string
-		hexHash = temp;//copy the temp over to the string
-
-		// return the std::string 
-		return hexHash;
-	}
 
 	void Controller::bruteForce() {
 
@@ -190,7 +167,6 @@ namespace application {
 			// now pop that element off
 			this->undefinedHashes->pop();
 
-			
 
 		}
 
