@@ -66,8 +66,7 @@ void testController() {
 	// works verified online
 	// controller.simpleHashing();//run the simple hash test
 	controller.loadDictionary(); // test the basic dictionary functionality
-	// controller.decryptFile();//load the file 
-	// controller.decrypt();
+	controller.decryptFile();//load the file 
 	// controller.printDictionary();
 
 }

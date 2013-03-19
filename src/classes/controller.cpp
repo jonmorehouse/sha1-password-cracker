@@ -27,14 +27,8 @@ namespace application {
 			this->validCharacters->push_back(input[0]);
 		};
 
-		// load in the files
+		// load in the valid characters file into the valid characters vector to be used by our brute force algorithm
 		files::loadFile(this->data.validCharactersFile.c_str(), helper);
-
-		// loop through the vector and print each element 
-		for_each(this->validCharacters->begin(), this->validCharacters->end(), [] (char character) {
-
-			std::cout << character << std::endl; 
-		});
 	};
 
 
@@ -118,7 +112,6 @@ namespace application {
 		// decrypt a file of elements
 		auto helper = [this, &result, &hashes] (std::string hash) {
 
-			std::cout << this->dictionary->size() << std::endl;
 			// now check if the element is not found etc
 			result = this->dictionary->find(hash);
 
@@ -197,9 +190,11 @@ namespace application {
 			// now pop that element off
 			this->undefinedHashes->pop();
 
-			// std::cout << current << std::endl;
+			
 
 		}
+
+
 
 	}
 
