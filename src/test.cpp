@@ -2,6 +2,7 @@
 #include "modules/input.hpp"
 #include "modules/files.hpp"
 #include "modules/sha1.hpp"
+#include "modules/password.hpp"
 #include "classes/controller.hpp"
 
 // include c++ libraries that are not included previously
@@ -71,6 +72,13 @@ void testController() {
 
 }
 
+void testPassword() {
+
+	password::Password password;//password element
+	
+
+}
+
 
 int main() {
 
@@ -80,7 +88,9 @@ int main() {
 
 	// testInput();//test the input module
 
-	testController();
+	// testController();
+
+	testPassword();//
 
 
 }
