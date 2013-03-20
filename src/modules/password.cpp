@@ -8,48 +8,40 @@ namespace password {
 	
 	void Password::crack() {
 
-		// std::string guess(this->size, (*this->validCharacters)[0]);//this is the current guess
-		std::string guess;
-		// no vector element will be greater than the length of the element
-		std::vector<int> characterIndex;//index for the current guess / position
+		// guess element
+		std::string guess;	
 
-
-		// resize the string 
-		guess.resize(this->size);
-
-
-		// check the current guess and respond accordingly
-		auto check = [&guess] () {
-
-			std::cout << guess << std::endl;
-			// check the guess element here!
-			// std::cout << guess << std::endl;
-		};	
-
-		// assume that the brute force is maxed out when the last guess integer is equal to the last valid character etc ...
-		while (guess[this->size - 1] != validCharacters->back()) {
-
-			// want to iterate through each of the elements
-				
+		// initialize the character element index
+		std::vector<int> characterIndex(this->size, -1);
 
 
 
-		}
+		auto check = [&characterIndex, &guess] () {
 
-		// loop through all indexes of the value
-		for (int i = 0; i < this->size; i++) {
+			// create string based upon the characterIndex and then check it properly
+		};
 
-			// loop through all of the characters 
-			for_each(this->validCharacters->begin(), this->validCharacters->end(), [&guess, i, check] (char character) {
+		// loop through all possible elements -- counting through our element each tim
+		do {
+			// loop through all of the validCharacters indices etc
+			for (int i = 0; i < this->validCharacters->size(); i++) {
+				characterIndex[0] = i;//
+				check();//check with each combination
+			}
 
-				guess[i] = character;
-				std::cout << guess << std::endl;
-				// check();//check the value -- if it is true it will kill the entire function!
-			});
+			// loop through the size of the characters and then ensure that we need to they are the correct elements
+			// if they are not, go ahead and reset them to the next element
+			for (int j = 0; j < characterIndex.size(); j) {
 
-			
-		}//end of for loop
-		
+				if (characterIndex[j] == this->validCharacters->size() - 1)
+					characterIndex[j+1] += 1;//increment the next element by 1
+			}
+			// we need to do something about this!
+			characterIndex[this->size - 1] += 1;
+
+
+		} while(characterIndex[this->size - 1] < this->validCharacters->size());
+
 
 	}
 
