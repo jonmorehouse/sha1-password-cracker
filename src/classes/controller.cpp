@@ -163,9 +163,19 @@ namespace application {
 
 			// grab the front element
 			current = this->undefinedHashes->front();
+			// grab the password
+			password::Password password(this->validCharacters, current, 4, 4);
+			password.crack();
+
+			if (password.solved) {
+
+				this->dictionary->insert(std::pair<std::string, std::string>(current, password.value));
+
+			}	
 
 			// now pop that element off
 			this->undefinedHashes->pop();
+
 
 
 		}
