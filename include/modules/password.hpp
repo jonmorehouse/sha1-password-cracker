@@ -24,7 +24,7 @@ namespace password {
 		std::string hash;//hash length
 		std::string value;//current hash
 
-		int size;//length of the password
+		int maxSize;//length of the password
 		int minSize;//minimum length of password
 		bool solved;//true or false of whether or not the element was solved
 	};	
