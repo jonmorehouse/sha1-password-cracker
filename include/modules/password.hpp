@@ -14,7 +14,7 @@ namespace password {
 	struct Password {
 
 		//pass in valid chars and a hash!	
-		Password(std::vector<char> * validCharacters, std::string hash);
+		Password(std::vector<char> * validCharacters, std::string hash, int minSize = 4, int maxSize = 6);
 
 		// functions for the element
 		void crack();//

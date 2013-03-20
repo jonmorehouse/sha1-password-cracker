@@ -4,7 +4,7 @@ namespace password {
 
 	// require that a validCharacter vector passed in as well as a hash!
 	// can change the min/max length other ways
-	Password::Password(std::vector<char> * validCharacters, std::string hash) : validCharacters(validCharacters), hash(hash), solved(false), maxSize(8), minSize(4) {}
+	Password::Password(std::vector<char> * validCharacters, std::string hash, int minSize, int maxSize) : validCharacters(validCharacters), hash(hash), solved(false), maxSize(maxSize), minSize(minSize) {}
 	
 	// password crack element!
 	void Password::crack() {
@@ -21,14 +21,18 @@ namespace password {
 			// create string based upon the characterIndex and then check it properly
 			std::string currentHash = getHexHash(guess);
 
-			// print current guess
-			std::cout << guess << std::endl;
+			// 
+			if (guess == "aaaa") std::cout << guess.length() << std::endl;
 
 			// if the hash is not the current element then are done!
 			if (this->hash != currentHash) return;
 
 			// set the current status!
-			else this->solved = true;
+			else {
+
+				this->solved = true;
+				this->value = guess;
+			}
 		};
 
 		// recursive function to iterate through all possibilities
@@ -58,6 +62,7 @@ namespace password {
 					// set the guess element as the first element
 					characterIndex[i] = 0;
 
+					// if we need to iterate, but are at the last element then stop!
 					if (guess.length() < this->maxSize - 1) {
 
 						// push onto the back of the characterIndex vector

@@ -84,9 +84,11 @@ void testPassword() {
 	});
 
 	// 
-	password::Password password(&validCharacters, "asdf");//password element
+	password::Password password(&validCharacters, password::getHexHash("aaab"));//password element
 
 	password.crack();
+
+	if (password.solved) std::cout << password.value << std::endl;
 }
 
 
