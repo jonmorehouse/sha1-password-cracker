@@ -19,6 +19,12 @@ namespace password {
 		auto check = [&characterIndex, &guess] () {
 
 			// create string based upon the characterIndex and then check it properly
+			for (int i = 0; i < characterIndex.size(); i++)
+				guess[i] = characterIndex[i];
+
+			std::cout << guess << std::endl;
+
+
 		};
 
 		// loop through all possible elements -- counting through our element each tim
@@ -30,15 +36,12 @@ namespace password {
 			}
 
 			// loop through the size of the characters and then ensure that we need to they are the correct elements
-			// if they are not, go ahead and reset them to the next element
+			// go through and apply our counters for the different spots of the element accordingly
 			for (int j = 0; j < characterIndex.size(); j) {
 
 				if (characterIndex[j] == this->validCharacters->size() - 1)
 					characterIndex[j+1] += 1;//increment the next element by 1
 			}
-			// we need to do something about this!
-			characterIndex[this->size - 1] += 1;
-
 
 		} while(characterIndex[this->size - 1] < this->validCharacters->size());
 
