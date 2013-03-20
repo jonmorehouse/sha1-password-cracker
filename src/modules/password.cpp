@@ -16,13 +16,19 @@ namespace password {
 		std::vector<int> characterIndex(this->minSize, 0);
 
 		// check whether or not this guess is correct
-		auto check = [&characterIndex, &guess] () {
+		auto check = [&characterIndex, &guess, this] () {
 
 			// create string based upon the characterIndex and then check it properly
-			// for (int i = 0; i < characterIndex.size(); i++)
-				// guess[i] = characterIndex[i];
+			std::string currentHash = getHexHash(guess);
 
+			// print current guess
 			std::cout << guess << std::endl;
+
+			// if the hash is not the current element then are done!
+			if (this->hash != currentHash) return;
+
+			// set the current status!
+			else this->solved = true;
 		};
 
 		// recursive function to iterate through all possibilities
@@ -30,11 +36,17 @@ namespace password {
 		do {
 
 			// move the first element each time
-			for_each(this->validCharacters->begin(), this->validCharacters->end(), [&guess, check] (char character) {
+			for_each(this->validCharacters->begin(), this->validCharacters->end(), [&guess, check, this] (char character) {
+
+				if (this->solved) return;
 
 				guess[0] = character;//initialize the character
 				check();//check this particular guess
+				// check if solved each time
 			});
+
+			// break if solved 
+			if (this->solved) break;
 
 			// do some work with the counter etc!
 			// now we know that the first element is equal to the last element of the validCharacters vector
@@ -46,26 +58,27 @@ namespace password {
 					// set the guess element as the first element
 					characterIndex[i] = 0;
 
-					// make sure that we are not the last element already
-					if (i + 1 >= this->maxSize)
+					if (guess.length() < this->maxSize - 1) {
 
-					// insert resize logic here!
-					// resize if we are the second to last element
-					// resize if we are under the maxsize etc
-					if (i+1 >= guess.length() && guess.length() < this->maxSize) {
-
-
-
+						// push onto the back of the characterIndex vector
+						characterIndex.push_back(0);
+						// add an element to the guess
+						guess.resize(guess.length() + 1);
 					}
 
-					// 
+					// increment the character index by one!
 					characterIndex[i+1]++;
+
+					// increment the proper elements etc!
+					guess[i] = (*this->validCharacters)[characterIndex[i]];
+					guess[i+1] = (*this->validCharacters)[characterIndex[i+1]];
 				}	
-
 			}
-
-		// set up the 
-		} while(!this->solved && (guess.length() <= this->maxSize) && (guess[this->maxSize - 1] == this->validCharacters->back()));
+		// set up the conditions --
+		// can't be solved -- this won't happen because it will break first!
+		// needs to be less than or equal to the maximum size
+		// and the last character of hte last array can't equal the last element of the validCharacters vector
+		} while(!this->solved && (guess.length() <= this->maxSize) && (guess[this->maxSize - 1] != this->validCharacters->back()));
 	}
 
 	// grab the hex hash from basic hashing function implemented
