@@ -26,8 +26,7 @@ namespace password {
 
 		int size;//length of the password
 		int minSize;//minimum length of password
-		bool status;//status of the element
-
+		bool solved;//true or false of whether or not the element was solved
 	};	
 		
 	// grab the password hash!
